@@ -35,7 +35,7 @@ values:
         spark.sql.partitionProvider: catalog
         spark.sql.sources.provider: iceberg
         spark.sql.sources.schema.numParts: '1'
-        spark.sql.sources.schema.part.0: '{"type":"struct","fields":[{"name":"id","type":"integer","nullable":true,"metadata":{}},{"name":"name","type":"string","nullable":true,"metadata":{}},{"name":"age","type":"integer","nullable":true,"metadata":{}}]}'
+        spark.sql.sources.schema.part.0: '{"fields":[{"metadata":{},"name":"id","nullable":true,"type":"integer"},{"metadata":{},"name":"name","nullable":true,"type":"string"},{"metadata":{},"name":"age","nullable":true,"type":"integer"}],"type":"struct"}'
         transient_lastDdlTime: '1680894197'
       storage_descriptor:
       - input_format: org.apache.hadoop.mapred.SequenceFileInputFormat

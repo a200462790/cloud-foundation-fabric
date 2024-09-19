@@ -1,6 +1,6 @@
 # Biglake Catalog
 
-This module allows to create a Biglake catalog with databases and corresponding tables in each database.
+This module allows to create a BigLake Metastore with databases and corresponding tables in each database.
 
 ## Examples
 
@@ -42,9 +42,31 @@ module "biglake_catalog" {
               "transient_lastDdlTime"             = "1680894197"
               "spark.sql.partitionProvider"       = "catalog"
               "owner"                             = "John Doe"
-              "spark.sql.sources.schema.part.0"   = "{\"type\":\"struct\",\"fields\":[{\"name\":\"id\",\"type\":\"integer\",\"nullable\":true,\"metadata\":{}},{\"name\":\"name\",\"type\":\"string\",\"nullable\":true,\"metadata\":{}},{\"name\":\"age\",\"type\":\"integer\",\"nullable\":true,\"metadata\":{}}]}"
-              "spark.sql.sources.provider"        = "iceberg"
-              "provider"                          = "iceberg"
+              "spark.sql.sources.schema.part.0" = jsonencode({
+                type = "struct"
+                fields = [
+                  {
+                    name     = "id"
+                    type     = "integer"
+                    nullable = true
+                    metadata = {}
+                  },
+                  {
+                    name     = "name"
+                    type     = "string"
+                    nullable = true
+                    metadata = {}
+                  },
+                  {
+                    name     = "age"
+                    type     = "integer"
+                    nullable = true
+                    metadata = {}
+                  }
+                ]
+              })
+              "spark.sql.sources.provider" = "iceberg"
+              "provider"                   = "iceberg"
             }
           }
         }
