@@ -132,7 +132,7 @@ resource "google_network_services_gateway" "default" {
   location                             = var.region
   description                          = var.description
   labels                               = var.labels
-  addresses                            = var.addresses != null ? var.addresses : []
+  addresses                            = var.addresses
   type                                 = "SECURE_WEB_GATEWAY"
   ports                                = var.ports
   scope                                = var.scope != null ? var.scope : ""
