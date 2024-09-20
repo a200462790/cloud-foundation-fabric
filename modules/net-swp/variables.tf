@@ -18,7 +18,7 @@
 
 variable "addresses" {
   description = "One or more IP addresses to be used for Secure Web Proxy."
-  type        = list(string)
+  type        = optional(list(string))
 }
 
 variable "certificates" {
