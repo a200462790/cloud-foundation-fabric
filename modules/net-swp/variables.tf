@@ -162,3 +162,16 @@ variable "tls_inspection_config" {
   })
   default = null
 }
+
+variable "routing_mode" {
+  description = "Value to use for the routing mode of the secure web gateway"
+  type        = string
+  default     = null
+  validation {
+    condition = anytrue([
+      var.routing_mode == "NEXT_HOP_ROUTING_MODE",
+      var.routing_mode == null,
+    ])
+    error_message = "Routing_mode must be one of null or NEXT_HOP_ROUTING_MODE"
+  }
+}

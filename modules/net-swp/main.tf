@@ -140,6 +140,7 @@ resource "google_network_services_gateway" "default" {
   gateway_security_policy              = google_network_security_gateway_security_policy.default.id
   network                              = var.network
   subnetwork                           = var.subnetwork
+  routing_mode                         = var.routing_mode
   delete_swg_autogen_router_on_destroy = var.delete_swg_autogen_router_on_destroy
 }
 

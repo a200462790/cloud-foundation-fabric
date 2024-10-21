@@ -38,6 +38,31 @@ module "secure-web-proxy" {
 # tftest modules=1 resources=2 inventory=basic.yaml
 ```
 
+### Secure Web Proxy as Next Hop
+
+(Note that this will not allow any request to pass.)
+
+```hcl
+module "secure-web-proxy" {
+  source = "./fabric/modules/net-swp"
+
+  project_id   = "my-project"
+  region       = "europe-west4"
+  name         = "secure-web-proxy"
+  network      = "projects/my-project/global/networks/my-network"
+  subnetwork   = "projects/my-project/regions/europe-west4/subnetworks/my-subnetwork"
+  addresses    = ["10.142.68.3"]
+  certificates = []
+  labels = {
+    example = "value"
+  }
+  routing_mode = "NEXT_HOP_ROUTING_MODE"
+  tls_inspection_config = {
+    ca_pool = "projects/my-project/locations/europe-west4/caPools/swp-europe-west4"
+  }
+}
+# tftest modules=1 resources=3 inventory=next_hop.yaml
+```
 ### PSC service attachments
 
 The optional `service_attachment` variable allows [deploying SWP as a Private Service Connect service attachment](https://cloud.google.com/secure-web-proxy/docs/deploy-service-attachment)
